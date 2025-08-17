@@ -1,0 +1,83 @@
+[project]
+name = "pos-py"
+version = "0.1.0"
+description = "Point of Sale application for animal accessories and food shop"
+authors = [
+    {name = "Lukasz",email = "23555273+lszku@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "sqlalchemy>=2.0.0",
+    "asyncpg>=0.29.0",
+    "aiosqlite>=0.19.0",
+    "alembic>=1.12.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.6",
+    "httpx>=0.28.0",
+    "google-auth>=2.23.0",
+    "google-auth-oauthlib>=1.1.0",
+    "reflex>=0.8.0",
+    "psycopg2-binary>=2.9.0",
+    "email-validator>=2.0.0",
+    "greenlet>=3.0.0",
+]
+
+[tool.poetry]
+name = "pos-py"
+version = "0.1.0"
+description = "Point of Sale application for animal accessories and food shop"
+authors = ["Lukasz <23555273+lszku@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "pos_py"}]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-asyncio = "^0.21.0"
+pytest-cov = "^4.1.0"
+testcontainers = "^3.7.0"
+httpx = "^0.28.0"
+ruff = "^0.1.0"
+mypy = "^1.7.0"
+pre-commit = "^3.5.0"
+black = "^23.0.0"
+isort = "^5.12.0"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+select = ["E", "F", "I", "N", "W", "B", "C4", "UP", "ARG", "SIM", "TCH", "TID", "Q"]
+ignore = ["E501", "B008", "C901"]
+fixable = ["ALL"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests", "backend/tests", "frontend/tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=pos_py --cov=backend --cov=frontend --cov-report=term-missing --cov-report=html"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
